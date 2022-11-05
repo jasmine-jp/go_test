@@ -1,0 +1,12 @@
+version: '3'
+services:
+  golang:
+    build:
+      context: .
+      dockerfile: 'Dockerfile'
+    container_name: 'go_test'
+    tty: true
+    restart: always
+    volumes:
+      - ./:/root/go_test
+    working_dir: '/root/go_test'
