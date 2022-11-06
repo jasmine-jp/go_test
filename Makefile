@@ -9,6 +9,9 @@ down:
 
 build:
 	cd gin \
+		&& rm -f -R go.mod go.sum \
 		&& go mod init gin \
 		&& go get -u github.com/gin-gonic/gin \
-		&& go run main.go
+		&& go get github.com/google/go-github/v48 \
+	cd gin/api \
+		&& go get

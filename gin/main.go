@@ -1,12 +1,21 @@
 package main
-import "github.com/gin-gonic/gin"
+
+import (
+	"github.com/gin-gonic/gin"
+	"gin/api"
+)
 
 func main() {
-  r := gin.Default()
-  r.GET("", func(c *gin.Context) {
-    c.JSON(200, gin.H{
-      "message": "hello",
-    })
-  })
-  r.Run() // "localhost:8080"
+	username := "chihiro-yabuta"
+	followers, repos := api.Get(username)
+
+	web := gin.Default()
+	web.GET("", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"username": username,
+		    "followers": followers,
+		    "public repos": repos,
+		})
+	})
+	web.Run() // "localhost:8080"
 }
